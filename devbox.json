@@ -2,8 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
   "packages": [
     "python@3.13.2",
-    "python313Packages.pip@25.0.1"
+    "python313Packages.pip@25.0.1",
+    "docker@latest"
   ],
+  "env": {
+    "VENV_DIR": ".venv"
+  },
   "shell": {
     "init_hook": [
       ". $VENV_DIR/bin/activate"
