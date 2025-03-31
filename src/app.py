@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -9,7 +9,9 @@ app = Flask(__name__)
 # '/api/v1/healthz'
 
 def details():
-    return 'Hello Porto'
+    msg = 'Hello there, Porto!'
+    json_data = {"message": msg}
+    return jsonify(json_data)
 
 if __name__ == '__main__':
     app.run()
