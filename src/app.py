@@ -23,5 +23,5 @@ def health():
     return jsonify(healthy_json), healthy_code
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")
 
