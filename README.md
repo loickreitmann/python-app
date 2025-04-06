@@ -21,21 +21,23 @@ WARNING: This is a development server. Do not use it in a production deployment.
  * Running on http://127.0.0.1:5000
  ```
 
-## Building the image
+## Running Locally in Docker
+
+> Note: You'll need Docker Desktop locally.
+
+### Building the image
 
 ```shell
 % docker build -t python-app:v2 .
 ```
 
-## Running the image in Docker
-
-> Note: You'll need Docker Desktop locally.
+### Running the image in Docker
 
 ```shell
 % docker run -p 8080:5000 python-app:v2
 ```
 
-## Tag and Push Image to Docker Hub
+### Tag and push image to Docker Hub
 
 > Note: You'll need to have a Docker Hub account and to have you local environment set up to authenticare with Docker Hub using an access token.
 
@@ -44,15 +46,19 @@ WARNING: This is a development server. Do not use it in a production deployment.
 % docker push loickreitmann/python-app:v2
 ```
 
-## Running the app in Kubernetes
+## Running Locally Kubernetes
 
 > Note: You'll need Rancher Desktop running locally.
+
+### Apply the K8s configurations to run in Kubernetes
 
 ```shell
 % kubectl apply -f k8s/deploy.yaml
 % kubectl apply -f k8s/service.yaml
 % kubectl apply -f k8s/ingresss.yaml
 ```
+
+### Take a look a how things running
 
 ```shell
 % kubectl describe svc python-app
