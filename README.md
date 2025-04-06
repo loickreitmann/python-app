@@ -96,3 +96,13 @@ deployment.apps "python-app" deleted
 ingress.networking.k8s.io "python-app" deleted
 service "python-app" deleted
 ```
+
+## Using Helm to Manage Deployment Configuration
+
+Created the charts folder and created our helm app.
+
+```shell
+% mkdir charts
+% cd charts
+% helm create python-app
+```
