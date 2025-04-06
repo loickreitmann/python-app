@@ -128,3 +128,28 @@ NOTES:
 ```shell
 % helm uninstall python-app -n python-app
 ```
+
+## GitOps: Using Argo CD
+
+### Add the Argo CD Repo to Helm
+
+```shell
+% helm repo add argo https://argoproj.github.io/argo-helm
+"argo" has been added to your repositories
+
+% helm repo ls
+NAME    URL
+argo    https://argoproj.github.io/argo-helm
+```
+
+### Install Argo CD with Helm
+
+```shell
+% cd charts/argocd
+% helm upgrade --install argocd argo/argo-cd -n argocd --create-namespace -f values-argo.yaml
+Release "argocd" does not exist. Installing it now.
+NAME: argocd
+STATUS: deployed
+REVISION: 1
+...
+```
