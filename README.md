@@ -43,3 +43,48 @@ WARNING: This is a development server. Do not use it in a production deployment.
 % docker tag python-app:v2 loickreitmann/python-app:v2
 % docker push loickreitmann/python-app:v2
 ```
+
+## Running the app in Kubernetes
+
+> Note: You'll need Rancher Desktop running locally.
+
+```shell
+% kubectl apply -f k8s/deploy.yaml
+% kubectl apply -f k8s/service.yaml
+% kubectl apply -f k8s/ingresss.yaml
+```
+
+```shell
+% kubectl describe svc python-app
+Name:                     python-app
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=python-app
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.43.47.207
+IPs:                      10.43.47.207
+Port:                     <unset>  8080/TCP
+TargetPort:               5000/TCP
+Endpoints:                10.42.0.239:5000
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+```
+
+```shell
+% kubectl get ing
+NAME         CLASS     HOSTS              ADDRESS      PORTS   AGE
+python-app   traefik   python-app.local   10.0.0.206   80      5m23s
+```
+
+### Deleting the deployments
+
+```shell
+% kubectl delete -f k8s
+deployment.apps "python-app" deleted
+ingress.networking.k8s.io "python-app" deleted
+service "python-app" deleted
+```
