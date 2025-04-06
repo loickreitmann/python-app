@@ -1,10 +1,14 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
-  "packages": [
-    "python@3.13.2",
-    "python313Packages.pip@25.0.1",
-    "docker@latest"
-  ],
+  "packages": {
+    "python":                "3.13.2",
+    "python313Packages.pip": "25.0.1",
+    "docker":                "latest",
+    "helm": {
+      "version":            "latest",
+      "excluded_platforms": ["aarch64-darwin"]
+    }
+  },
   "env": {
     "VENV_DIR": ".venv"
   },
