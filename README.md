@@ -106,3 +106,19 @@ Created the charts folder and created our helm app.
 % cd charts
 % helm create python-app
 ```
+
+### Install the helm chart on kubernetes
+
+```shell
+% cd charts/python-app
+% helm install python-app -n python-app . --create-namespace
+NAME: python-app
+LAST DEPLOYED: Sun Apr  6 14:04:28 2025
+NAMESPACE: python-app
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+1. Get the application URL by running these commands:
+  http://python-app.local/
+```
