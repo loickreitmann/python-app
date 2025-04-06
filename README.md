@@ -122,3 +122,9 @@ NOTES:
 1. Get the application URL by running these commands:
   http://python-app.local/
 ```
+
+### Delete the python-app from kubernetes with Helm
+
+```shell
+% helm uninstall python-app -n python-app
+```
