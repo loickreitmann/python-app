@@ -1,5 +1,7 @@
 # Python App
 
+> Example Python App for use with the [From DevOps to Platform Engineering: Master Backstage & IDPs](https://www.udemy.com/course/from-devops-to-platform-engineering-master-backstage-idps/) course created by [Ricardo Andre Gonzalez Gomez](https://www.udemy.com/user/ricardo-andre-gonzalez-gomez/) on Udemy.
+
 ## Setup
 
 You'll need Devbox installed, and the ideal IDE is Visual Studio Code.
