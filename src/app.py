@@ -1,8 +1,14 @@
 import socket
 from flask import Flask, jsonify
+from markupsafe import escape
 import datetime
 
 app = Flask(__name__)
+
+# '/<name>'
+@app.route("/<name>")
+def hello(name):
+    return f"Hello, {escape(name)}"
 
 # '/api/v1/details'
 @app.route('/api/v1/details')
@@ -23,5 +29,5 @@ def health():
     return jsonify(healthy_json), healthy_code
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=3618)
 
