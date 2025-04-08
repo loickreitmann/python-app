@@ -25,8 +25,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/python-app:${{ env.SHORT_SHA }}
+        run: |
+          docker buildx create --use
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            -t ${{ vars.DOCKERHUB_USERNAME }}/python-app:${{ env.SHORT_SHA }} \
+            --push .  
