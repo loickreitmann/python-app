@@ -15,4 +15,4 @@ spec:
               service:
                 name: python-app
                 port:
-                  number: 3618
+                  number: 5000

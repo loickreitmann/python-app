@@ -18,7 +18,7 @@ spec:
         - name: python-app
           image: loickreitmann/python-app:c90729
           ports:
-            - containerPort: 3618
+            - containerPort: 5000
           resources:
             requests:
               cpu: "10m"
