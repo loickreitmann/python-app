@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: python-app
-          image: loickreitmann/python-app:c90729
+          image: loickreitmann/python-app:363e9b
           ports:
             - containerPort: 5000
           resources:
