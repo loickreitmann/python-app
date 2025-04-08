@@ -5,10 +5,15 @@ import datetime
 
 app = Flask(__name__)
 
+# '/'
+@app.route("/")
+def root():
+    return "Hello, there. You want to go home and rethink your life."
+
 # '/<name>'
 @app.route("/<name>")
 def hello(name):
-    return f"Hello, {escape(name)}"
+    return f"Hello, {escape(name)}. How are you today?"
 
 # '/api/v1/details'
 @app.route('/api/v1/details')
