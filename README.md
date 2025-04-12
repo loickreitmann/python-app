@@ -209,3 +209,14 @@ cert-manager v1.17.0 has been deployed successfully!
 % helm repo add actions-runner-controller https://actions-runner-controller.github.io/actions-runner-controller
 "actions-runner-controller" has been added to your repositories
 ```
+
+#### Install Helm chart
+
+```shell
+% helm upgrade --install --namespace actions-runner-system --create-namespace\
+  --set=authSecret.create=true\
+  --set=authSecret.github_token="$GH_RUNNER_PAT"\
+  --wait actions-runner-controller actions-runner-controller/actions-runner-controller
+```
+
+This will create the `actions-runner-system` namespace. In the next step, we will deploy our runner to that same `actions-runner-system` namespace.
