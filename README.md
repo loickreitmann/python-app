@@ -256,3 +256,6 @@ Apply it with `kubectl` into your cluster within the `actions-runner-system` nam
 % kubectl apply -n actions-runner-system -f github/runnerdeployment.yaml
 runnerdeployment.actions.summerwind.dev/self-hosted-runnerdeploy created
 ```
+
+Success!!
+![success](static-assets/self-hosted-runner.png)
