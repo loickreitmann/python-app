@@ -202,3 +202,10 @@ cert-manager v1.17.0 has been deployed successfully!
 2. Select repo.
 3. Click Generate Token and then copy the token locally ( we’ll need it later).
 4. Make a copy the `.env.sample` named `.env`, and past your new token as the value of the `GH_RUNNER_PAT` local environment variable.
+
+#### Add the repository
+
+```shell
+% helm repo add actions-runner-controller https://actions-runner-controller.github.io/actions-runner-controller
+"actions-runner-controller" has been added to your repositories
+```
