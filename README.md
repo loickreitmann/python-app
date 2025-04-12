@@ -217,6 +217,19 @@ cert-manager v1.17.0 has been deployed successfully!
   --set=authSecret.create=true\
   --set=authSecret.github_token="$GH_RUNNER_PAT"\
   --wait actions-runner-controller actions-runner-controller/actions-runner-controller
+Release "actions-runner-controller" does not exist. Installing it now.
+NAME: actions-runner-controller
+LAST DEPLOYED: Sat Apr 12 14:45:04 2025
+NAMESPACE: actions-runner-system
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace actions-runner-system -l "app.kubernetes.io/name=actions-runner-controller,app.kubernetes.io/instance=actions-runner-controller" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace actions-runner-system $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace actions-runner-system port-forward $POD_NAME 8080:$CONTAINER_PORT
 ```
 
 This will create the `actions-runner-system` namespace. In the next step, we will deploy our runner to that same `actions-runner-system` namespace.
