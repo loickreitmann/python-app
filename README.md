@@ -220,3 +220,19 @@ cert-manager v1.17.0 has been deployed successfully!
 ```
 
 This will create the `actions-runner-system` namespace. In the next step, we will deploy our runner to that same `actions-runner-system` namespace.
+
+#### Create the GitHub self hosted runners and configure to run against your repository
+
+Create a `runnerdeployment.yaml` file:
+
+```yaml
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: self-hosted-runnerdeploy
+spec:
+  replicas: 1
+  template:
+    spec:
+      repository: loickreitmann/python-app
+```
