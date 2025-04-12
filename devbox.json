@@ -7,11 +7,13 @@
     "helm": {
       "version":            "latest",
       "excluded_platforms": ["aarch64-darwin"]
-    }
+    },
+    "direnv": "latest"
   },
   "env": {
     "VENV_DIR": ".venv"
   },
+  "env_from": ".env",
   "shell": {
     "init_hook": [
       ". $VENV_DIR/bin/activate"
