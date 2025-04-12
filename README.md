@@ -194,3 +194,11 @@ NOTES:
 cert-manager v1.17.0 has been deployed successfully!
 ```
 
+### Deploy and Configure ARC
+
+#### Generate a Personal Access Token (PAT) for ARC to authenticate with GitHub
+
+1. Login to your GitHub account and Navigate to "Create new Token."
+2. Select repo.
+3. Click Generate Token and then copy the token locally ( we’ll need it later).
+4. Make a copy the `.env.sample` named `.env`, and past your new token as the value of the `GH_RUNNER_PAT` local environment variable.
