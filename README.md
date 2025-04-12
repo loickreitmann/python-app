@@ -236,3 +236,10 @@ spec:
     spec:
       repository: loickreitmann/python-app
 ```
+
+Apply it with `kubectl` into your cluster within the `actions-runner-system` namespace.
+
+```shell
+% kubectl apply -n actions-runner-system -f github/runnerdeployment.yaml
+runnerdeployment.actions.summerwind.dev/self-hosted-runnerdeploy created
+```
