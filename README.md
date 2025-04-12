@@ -163,3 +163,34 @@ With ARC you can :
 - Deploy self hosted runners on Kubernetes cluster with a simple set of commands.
 - Auto scale runners based on demand.
 - Setup across GitHub editions including GitHub Enterprise editions and GitHub Enterprise Cloud.
+
+### Prerequisites
+
+We'll use Helm to prepare the installation.
+
+#### Add the JetStack repo
+
+```shell
+% helm repo add jetstack https://charts.jetstack.io --force-update
+"jetstack" has been added to your repositories
+```
+
+#### Install `cert-manager`
+
+```shell
+% helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.17.0 \
+  --set crds.enabled=true
+NAME: cert-manager
+LAST DEPLOYED: Sat Apr 12 14:08:13 2025
+NAMESPACE: cert-manager
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+cert-manager v1.17.0 has been deployed successfully!
+```
+
