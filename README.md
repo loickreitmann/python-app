@@ -153,3 +153,13 @@ STATUS: deployed
 REVISION: 1
 ...
 ```
+
+## Continuous Deployment with GitHub Actions Self-Hosted Runners
+
+Using an **Actions Runner Controller** (**ARC**) makes it simpler to run self hosted environments on Kubernetes(K8s) cluster.
+
+With ARC you can :
+
+- Deploy self hosted runners on Kubernetes cluster with a simple set of commands.
+- Auto scale runners based on demand.
+- Setup across GitHub editions including GitHub Enterprise editions and GitHub Enterprise Cloud.
