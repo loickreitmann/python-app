@@ -25,11 +25,9 @@ server:
   ingress:
     enabled: true
     ingressClassName: nginx
+    hosts:
+      - argocd-server.local
     annotations:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    extraTls:
-      - hosts:
-        - argocd-server.local
-        # Based on the ingress controller used secret might be optional
-        secretName: wildcard-tls
+    tls: true
+    tlsSecretName: argocd-server-tls
