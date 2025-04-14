@@ -1,6 +1,54 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "argocd@2.14.7": {
+      "last_modified": "2025-03-23T05:31:05Z",
+      "resolved": "github:NixOS/nixpkgs/dd613136ee91f67e5dba3f3f41ac99ae89c5406b#argocd",
+      "source": "devbox-search",
+      "version": "2.14.7",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/a3ayq04brh76r8xqvc0svrgsvw3ik49q-argocd-2.14.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/a3ayq04brh76r8xqvc0svrgsvw3ik49q-argocd-2.14.7"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/c17irs6cxbqm0323q36amzyxqchdq97z-argocd-2.14.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/c17irs6cxbqm0323q36amzyxqchdq97z-argocd-2.14.7"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/zqkar9yb23hh45h0apznm1va5wyir0b2-argocd-2.14.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/zqkar9yb23hh45h0apznm1va5wyir0b2-argocd-2.14.7"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/zwij205sk24h4nw5yp9d7g9labjjhqma-argocd-2.14.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/zwij205sk24h4nw5yp9d7g9labjjhqma-argocd-2.14.7"
+        }
+      }
+    },
     "direnv@latest": {
       "last_modified": "2025-03-19T14:38:57Z",
       "resolved": "github:NixOS/nixpkgs/2a725d40de138714db4872dc7405d86457aa17ad#direnv",
@@ -94,6 +142,78 @@
             }
           ],
           "store_path": "/nix/store/jxqnf9f2zlplyi9fvm5m55c5x086raf3-docker-27.5.1"
+        }
+      }
+    },
+    "git@latest": {
+      "last_modified": "2025-03-11T17:52:14Z",
+      "resolved": "github:NixOS/nixpkgs/0d534853a55b5d02a4ababa1d71921ce8f0aee4c#git",
+      "source": "devbox-search",
+      "version": "2.48.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/b3sci30zzzlj3rzj1y89cijnd6zcwapk-git-2.48.1",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/086knqdw7fjgzczp0i6nad95s2v6jbya-git-2.48.1-doc"
+            }
+          ],
+          "store_path": "/nix/store/b3sci30zzzlj3rzj1y89cijnd6zcwapk-git-2.48.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pck1dr5jxrd5b8nmfasbn13z422jhcfm-git-2.48.1",
+              "default": true
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/xqqsvzlilh843rm6knykyng81apapr33-git-2.48.1-debug"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/485b32ys0s2dvjfisn7405ildmpqvfzk-git-2.48.1-doc"
+            }
+          ],
+          "store_path": "/nix/store/pck1dr5jxrd5b8nmfasbn13z422jhcfm-git-2.48.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/9qjzgsf9mvdp6sfd7xyzhgrahl2qhhp6-git-2.48.1",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/cgv7qa0ix059ma9a0qac0bywfvl3k7k2-git-2.48.1-doc"
+            }
+          ],
+          "store_path": "/nix/store/9qjzgsf9mvdp6sfd7xyzhgrahl2qhhp6-git-2.48.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lqx2rv26sdndpa2vyy2vxsahj03km69z-git-2.48.1",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/hjczhs1dm3hzij7mx5c91rkzqvkb89av-git-2.48.1-doc"
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/bk8xndavdnc2qgyvc6hcc8h29lk9jzqb-git-2.48.1-debug"
+            }
+          ],
+          "store_path": "/nix/store/lqx2rv26sdndpa2vyy2vxsahj03km69z-git-2.48.1"
         }
       }
     },
