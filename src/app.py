@@ -8,7 +8,7 @@ app = Flask(__name__)
 # '/'
 @app.route("/")
 def root():
-    return f"Hello, there. It's {datetime.datetime.now().strftime("%B %d, %Y")}. You want to go home and rethink your life."
+    return f"Hello, there. It's {datetime.datetime.now().strftime("%A, %B %d, %Y")}. You want to go home and rethink your life."
 
 # '/<name>'
 @app.route("/<name>")
