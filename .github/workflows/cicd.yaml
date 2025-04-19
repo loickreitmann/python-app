@@ -34,6 +34,14 @@ jobs:
     needs: docker-build
     steps:
       - uses: actions/checkout@v4
+      - name: Modify helm values file
+        shell: bash
+        env:
+          SHORT_SHA: ${{ needs.docker-build.outputs.short_sha }}
+        run: |
+          echo ${{ env.SHORT_SHA }}
+          pip install yq
+          yq -Yi 'image.tag = "${{ env.SHORT_SHA }}"' charts/python-app/values.yaml
       - name: Install argocd CLI
         shell: bash
         run: |
