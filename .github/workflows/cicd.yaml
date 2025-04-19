@@ -29,8 +29,8 @@ jobs:
             --push .
     outputs:
       short_sha: ${{ env.SHORT_SHA }}
-  argocd-sync:
-    runs-on: self-hosted
+  update-helm-chart:
+    runs-on: ubuntu-latest
     needs: docker-build
     steps:
       - uses: actions/checkout@v4
@@ -41,11 +41,15 @@ jobs:
         run: |
           echo ${{ env.SHORT_SHA }}
           pip install yq
-          yq -Yi 'image.tag = "${{ env.SHORT_SHA }}"' charts/python-app/values.yaml
+          yq -Yi '.image.tag = "${{ env.SHORT_SHA }}"' charts/python-app/values.yaml
       - name: Commit modified helm values file
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Updated values.yaml with image tag ${{ env.SHORT_SHA }}'
+  argocd-sync:
+    runs-on: self-hosted
+    needs: update-helm-chart
+    steps:
       - name: Install argocd CLI
         shell: bash
         run: |
