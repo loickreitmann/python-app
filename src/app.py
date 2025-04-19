@@ -13,7 +13,7 @@ def root():
 # '/<name>'
 @app.route("/<name>")
 def hello(name):
-    return f"Hello, {escape(name)}. What are you up to today? Anything fun? Maybe?"
+    return f"Hello, {escape(name)}. What are you up to today? Don't you want to go home and rethink your life?"
 
 # '/api/v1/details'
 @app.route('/api/v1/details')

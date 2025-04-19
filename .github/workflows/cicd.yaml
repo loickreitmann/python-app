@@ -53,7 +53,7 @@ jobs:
       - name: Install argocd CLI
         shell: bash
         run: |
-          curl -ksSL -o argocd https://argocd-server.argocd/download/argocd-linux-arm64
+          curl -ksSL -o argocd http://argocd-server.argocd/download/argocd-linux-arm64
           chmod +x argocd
           sudo mv ./argocd /usr/local/bin/argocd
       - name: Argo CD App Sync
