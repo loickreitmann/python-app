@@ -27,6 +27,8 @@ jobs:
             --platform linux/amd64,linux/arm64,linux/arm64/v8 \
             -t ${{ vars.DOCKERHUB_USERNAME }}/python-app:${{ env.SHORT_SHA }} \
             --push .
+    outputs:
+      short_sha: ${{ env.SHORT_SHA }}
   argocd-sync:
     runs-on: self-hosted
     needs: docker-build
