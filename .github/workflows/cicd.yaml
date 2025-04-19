@@ -35,6 +35,12 @@ jobs:
     runs-on: self-hosted
     needs: docker-build
     steps:
+      - name: Install argocd CLI
+        shell: bash
+        run: |
+          curl -ksSL -o argocd htpps://argocd-server.argocd/download/argocd-linux-arm64
+          chmod +x argocd
+          mv ./argocd /usr/local/bin/argocd
       - name: Argo CD App Sync
         shell: bash
         run: |
