@@ -8,9 +8,10 @@
       "version":            "latest",
       "excluded_platforms": ["aarch64-darwin"]
     },
-    "direnv": "latest",
-    "argocd": "2.14.7",
-    "git":    "latest"
+    "direnv":  "latest",
+    "argocd":  "2.14.7",
+    "git":     "latest",
+    "grpcurl": "latest"
   },
   "env": {
     "VENV_DIR": ".venv"

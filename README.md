@@ -99,7 +99,7 @@ service "python-app" deleted
 
 ## Using Helm to Manage Deployment Configuration
 
-Created the charts folder and created our helm app.
+Created the charts directory and created our helm app.
 
 ```shell
 % mkdir charts
@@ -144,15 +144,137 @@ argo    https://argoproj.github.io/argo-helm
 
 ### Install Argo CD with Helm
 
+From the project's root, run the following:
+
 ```shell
 % cd charts/argocd
 % helm upgrade --install argocd argo/argo-cd -n argocd --create-namespace -f values-argo.yaml
 Release "argocd" does not exist. Installing it now.
 NAME: argocd
+LAST DEPLOYED: Sun Apr 13 17:11:26 2025
+NAMESPACE: argocd
 STATUS: deployed
 REVISION: 1
-...
+TEST SUITE: None
+NOTES:
+In order to access the server UI you have the following options:
+
+1. kubectl port-forward service/argocd-server -n argocd 8080:443
+
+    and then open the browser on http://localhost:8080 and accept the certificate
+
+2. enable ingress in the values file `server.ingress.enabled` and either
+      - Add the annotation for ssl passthrough: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-1-ssl-passthrough
+      - Set the `configs.params."server.insecure"` in the values file and terminate SSL at your ingress: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-2-multiple-ingress-objects-and-hosts
+
+
+After reaching the UI the first time you can login with username: admin and the random password generated during the installation. You can find the password by running:
+
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+
+(You should delete the initial secret afterwards as suggested by the Getting Started Guide: https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli)
 ```
+
+### Install the Ingresses for Accessing Argo CD
+
+#### Web UI Ingress
+
+From the project's root, run the following:
+
+```shell
+% cd argocd/
+% kubectl apply -f argocd-ingress.yaml
+```
+
+#### API Ingress to access it using the `argocd` CLI
+
+From the project's root, run the following:
+
+```shell
+% cd argocd/
+% kubectl apply -f argocd-grpc-ingress.yaml
+```
+
+To use the `argocd` CLI, run the login script from within the `argocd/` directory. This script exposes the Argo CD API with port forwarding, since this local setup doesn't use TLS.
+
+```shell
+% sh argocd-local-login.sh
+🔁 Starting port-forward to Argo CD server...
+⏳ Waiting for port 8080 to be available...
+Connection to localhost port 8080 [tcp/http-alt] succeeded!
+Connection to localhost port 8080 [tcp/http-alt] succeeded!
+✅ Port-forward established.
+🔐 Getting Argo CD admin password...
+🔑 Logging in to Argo CD CLI at localhost:8080...
+WARNING: server is not configured with TLS. Proceed (y/n)?
+```
+
+Enter `y` at the above prompt.
+
+```shell
+WARNING: server is not configured with TLS. Proceed (y/n)? y
+'admin:login' logged in successfully
+Context 'localhost:8080' updated
+🎉 Logged in to Argo CD CLI!
+🛑 Killing port-forward (PID xxxx)
+argocd-local-login.sh: line 1: kill: (xxxx) - No such process
+```
+
+You'll now be able to run `argocd` command in your terminal.
+
+```shell
+% argocd proj list
+NAME     DESCRIPTION  DESTINATIONS  SOURCES  CLUSTER-RESOURCE-WHITELIST  NAMESPACE-RESOURCE-BLACKLIST  SIGNATURE-KEYS  ORPHANED-RESOURCES  DESTINATION-SERVICE-ACCOUNTS
+default               *,*           *        */*                         <none>                        <none>          disabled            <none>
+```
+
+```shell
+% argocd version
+argocd: v2.14.7
+  BuildDate: unknown
+  GitCommit: v2.14.7
+  GitTreeState: clean
+  GitTag: v2.14.7
+  GoVersion: go1.24.1
+  Compiler: gc
+  Platform: darwin/arm64
+argocd-server: v2.14.9+38985bd
+  BuildDate: 2025-04-02T19:31:28Z
+  GitCommit: 38985bdcd6c3b031fb83757a1fb0c39a55bf6a24
+  GitTreeState: clean
+  GoVersion: go1.23.3
+  Compiler: gc
+  Platform: linux/arm64
+  Kustomize Version: v5.4.3 2024-07-19T16:40:33Z
+  Helm Version: v3.16.3+gcfd0749
+  Kubectl Version: v0.31.0
+  Jsonnet Version: v0.20.0
+```
+
+```shell
+% argocd app list
+NAME               CLUSTER                         NAMESPACE   PROJECT  STATUS  HEALTH   SYNCPOLICY  CONDITIONS  REPO                                             PATH               TARGET
+argocd/python-app  https://kubernetes.default.svc  python-app  default  Synced  Healthy  Auto        <none>      https://github.com/loickreitmann/python-app.git  charts/python-app  HEAD
+```
+<!-- #### Create a TLS secret
+
+```shell
+% openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout tls.key -out tls.crt \
+  -subj "/CN=argocd-server.local/O=ArgoCD"
+Generating a 2048 bit RSA private key
+.....+++++
+....................................................+++++
+writing new private key to 'tls.key'
+-----
+```
+
+```shell
+% kubectl create secret tls argocd-server-tls \
+  --cert=tls.crt --key=tls.key \
+  -n argocd
+secret/argocd-server-tls created
+``` -->
 
 ## Continuous Deployment with GitHub Actions Self-Hosted Runners
 
@@ -259,3 +381,21 @@ runnerdeployment.actions.summerwind.dev/self-hosted-runnerdeploy created
 
 Success!!
 ![success](static-assets/self-hosted-runner.png)
+
+---
+
+## Continuous Deployment with Argo CD from Github Action
+
+### Get the Argo CD `admin` Password
+
+```shell
+% kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
+```
+
+Save the resulting output as the `ARGOCD_ADMIN_PASSWORD` variable in your `.env` file.
+
+### Log Into Argo CD with the `argocd` CLI
+
+```shell
+% argocd login argocd-server.local --insecure --grpc-web --skip-test-tls --grpc-web-root-path "argocd" --username admin --password '$ARGOCD_ADMIN_PASSWORD'
+```
