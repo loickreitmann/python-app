@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  docker:
+  docker-build:
     runs-on: ubuntu-latest
     steps:
       -
@@ -30,4 +30,16 @@ jobs:
           docker buildx build \
             --platform linux/amd64,linux/arm64,linux/arm64/v8 \
             -t ${{ vars.DOCKERHUB_USERNAME }}/python-app:${{ env.SHORT_SHA }} \
-            --push .  
+            --push .
+  argocd-sync:
+    runs-on: self-hosted
+    needs: docker-build
+    steps:
+      - name: Argo CD App Sync
+        shell: bash
+        run: |
+          argocd login argocd-server.argocd \
+            --insecure \
+            --username admin \
+            --password ${{ secrets.ARGOCD_ADMIN_PASSWORD }}
+          argocd app sync python-app
