@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: loickreitmann/python-app
   pullPolicy: IfNotPresent
-  tag: "9e8d1f"
+  tag: "647812"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
