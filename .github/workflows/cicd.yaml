@@ -44,6 +44,8 @@ jobs:
           yq -Yi '.image.tag = "${{ env.SHORT_SHA }}"' charts/python-app/values.yaml
       - name: Commit modified helm values file
         uses: EndBug/add-and-commit@v9
+        env:
+          SHORT_SHA: ${{ needs.docker-build.outputs.short_sha }}
         with:
           message: 'Updated values.yaml with image tag ${{ env.SHORT_SHA }}'
   # argocd-sync:
