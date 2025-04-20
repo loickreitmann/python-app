@@ -206,18 +206,9 @@ Connection to localhost port 8080 [tcp/http-alt] succeeded!
 ✅ Port-forward established.
 🔐 Getting Argo CD admin password...
 🔑 Logging in to Argo CD CLI at localhost:8080...
-WARNING: server is not configured with TLS. Proceed (y/n)?
-```
-
-Enter `y` at the above prompt.
-
-```shell
-WARNING: server is not configured with TLS. Proceed (y/n)? y
-'admin:login' logged in successfully
-Context 'localhost:8080' updated
-🎉 Logged in to Argo CD CLI!
-🛑 Killing port-forward (PID xxxx)
-argocd-local-login.sh: line 1: kill: (xxxx) - No such process
+FATA[0003] Failed to establish connection to localhost:8080: EOF 
+🛑 Killing port-forward (PID 4570)
+argocd/argocd-local-login.sh: line 1: kill: (4570) - No such process
 ```
 
 You'll now be able to run `argocd` command in your terminal.

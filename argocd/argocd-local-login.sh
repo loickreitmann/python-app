@@ -36,7 +36,7 @@ echo "🔐 Getting Argo CD admin password..."
 PASSWORD=$ARGOCD_ADMIN_PASSWORD
 
 echo "🔑 Logging in to Argo CD CLI at localhost:$PORT..."
-argocd login localhost:$PORT --username $USERNAME --password "$PASSWORD" --insecure
+argocd login localhost:$PORT --username $USERNAME --password "$PASSWORD" --insecure --skip-test-tls
 
 echo "🎉 Logged in to Argo CD CLI!"
 
