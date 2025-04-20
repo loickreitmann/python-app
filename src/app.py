@@ -18,7 +18,7 @@ def hello(name):
 # '/api/v1/details'
 @app.route('/api/v1/details')
 def details():
-    msg = 'Hello, there! TTYL'
+    msg = 'Hello, there!'
     json_data = {
         "message": msg,
         "time": datetime.datetime.now().strftime("%H:%M:%S on %B %d, %Y"),
