@@ -3,6 +3,7 @@ kind: Component
 metadata:
   name: python-app
   description: Python App for building CI/CD example in Backstage course
+  namespace: echobase
   annotations:
     github.com/project-slug: loickreitmann/python-app
 spec:
