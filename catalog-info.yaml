@@ -7,5 +7,5 @@ metadata:
     github.com/project-slug: loickreitmann/python-app
 spec:
   type: service
-  owner: loickreitmann
+  owner: echobase
   lifecycle: experimental
