@@ -1,0 +1,9 @@
+site_name: 'python-app'
+site_description: 'Main docs for the Python App'
+repo_url: https://github.com/loickreitmann/python-app
+edit_uri: edit/main/docs
+plugins:
+  - techdocs-core
+nav:
+  - Overview:
+    - Python App: 'index.md'
