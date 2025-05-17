@@ -5,6 +5,7 @@ metadata:
   description: Python App for building CI/CD example in Backstage course
   annotations:
     github.com/project-slug: loickreitmann/python-app
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   owner: echobase
