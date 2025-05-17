@@ -5,5 +5,5 @@ edit_uri: edit/main/docs
 plugins:
   - techdocs-core
 nav:
-  - Overview:
-    - Python App: 'docs/index.md'
+  - Peomes:
+    - Apollinaire: 'poemes/apollinaire.md'
